@@ -1,24 +1,23 @@
 require 'pry'
 
 def pet_shop_name(pet_shop)
-  return pet_shop[:name]
+  pet_shop[:name]
 end
 
 def total_cash(monies)
-  return monies[:admin][:total_cash]
+  monies[:admin][:total_cash]
 end
 
 def add_or_remove_cash(pet_shop, amount)
-  return pet_shop[:admin][:total_cash] += amount
-  return pet_shop[:admin][:total_cash] -= amount
+    pet_shop[:admin][:total_cash] += amount
 end
 
 def pets_sold(pets)
-  return pets[:admin][:pets_sold]
+  pets[:admin][:pets_sold]
 end
 
 def increase_pets_sold(pet_shop, pets)
-  return pet_shop[:admin][:pets_sold] += pets
+  pet_shop[:admin][:pets_sold] += pets
 end
 
 def stock_count(pet_shop)
@@ -26,7 +25,7 @@ def stock_count(pet_shop)
   for pet in pet_shop[:pets]
     pet_count += 1
   end
-  return pet_count
+  pet_count
 end
 
 def pets_by_breed(pet_shop, pets)
@@ -36,7 +35,7 @@ def pets_by_breed(pet_shop, pets)
   specific_breed_array << pet[:breed]
     end
   end
-  return specific_breed_array
+  specific_breed_array
 end
 
 def find_pet_by_name(pet_shop, name_of_pet)
@@ -45,7 +44,7 @@ def find_pet_by_name(pet_shop, name_of_pet)
       return pet
     end
   end
-  return nil
+  nil
 end
 
 def remove_pet_by_name(pet_shop, pet_to_remove)
@@ -61,15 +60,15 @@ def add_pet_to_stock(pet_shop, new_pet)
 end
 
 def customer_cash(customers)
-  return customers[:cash]
+  customers[:cash]
 end
 
 def remove_customer_cash(customer, cash_to_remove)
-  return customer[:cash] -= cash_to_remove
+  customer[:cash] -= cash_to_remove
 end
 
 def customer_pet_count(customer)
-  return customer[:pets].count
+  customer[:pets].count
 end
 
 def add_pet_to_customer(customer, new_pet)
@@ -83,6 +82,11 @@ def customer_can_afford_pet(customer, new_pet)
     false
   end
 end
+
+#used pry to check
+#customer funds, pet price, customer_can_afford_pet resulting in false
+#everything was running because the if pet != was true so everything else seemed to run
+#finally realised 2 things had to be true so used &&, if one was false it would
 
 def sell_pet_to_customer(pet_shop, pet, customer)
   if pet != nil && customer_can_afford_pet(customer, pet)
