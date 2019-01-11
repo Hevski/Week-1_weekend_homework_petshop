@@ -1,3 +1,5 @@
+require 'pry'
+
 def pet_shop_name(pet_shop)
   return pet_shop[:name]
 end
@@ -75,19 +77,19 @@ def add_pet_to_customer(customer, new_pet)
 end
 
 def customer_can_afford_pet(customer, new_pet)
-  can_buy_pet = false
-  customer[:pets] << new_pet
-  if customer[:cash] < new_pet[:price]
-    return can_buy_pet
-  else return true
+  if customer[:cash] >= new_pet[:price]
+    true
+  else
+    false
   end
 end
 
 def sell_pet_to_customer(pet_shop, pet, customer)
-  remove_pet_by_name(pet_shop, pet)
-  add_pet_to_customer(customer, pet)
-  increase_pets_sold(pet_shop, 1)
-  remove_customer_cash(customer,pet[:price])
-  add_or_remove_cash(pet_shop, pet[:price])
-
+  if pet != nil && customer_can_afford_pet(customer, pet)
+    remove_pet_by_name(pet_shop, pet)
+    add_pet_to_customer(customer, pet)
+    increase_pets_sold(pet_shop, 1)
+    remove_customer_cash(customer, pet[:price])
+    add_or_remove_cash(pet_shop, pet[:price])
+  end
 end
