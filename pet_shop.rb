@@ -76,17 +76,18 @@ def add_pet_to_customer(customer, new_pet)
 end
 
 def customer_can_afford_pet(customer, new_pet)
-  if customer[:cash] >= new_pet[:price]
-    true
-  else
-    false
-  end
+  customer[:cash] >= new_pet[:price]
+  # worked without the true/false if statement
+  # >= always returns t/f???
 end
 
-#used pry to check
-#customer funds, pet price, customer_can_afford_pet resulting in false
-#everything was running because the if pet != was true so everything else seemed to run
-#finally realised 2 things had to be true so used &&, if one was false it would
+#used pry to check customer funds, pet price,
+#customer_can_afford_pet resulting in false
+#everything was running because the if pet != was
+#true so everything else seemed to run
+#finally realised 2 things had to be
+#true so used &&, if one was false it would stop, if
+#both true it would run everything else
 
 def sell_pet_to_customer(pet_shop, pet, customer)
   if pet != nil && customer_can_afford_pet(customer, pet)
